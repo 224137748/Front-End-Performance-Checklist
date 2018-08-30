@@ -485,9 +485,9 @@ Reduce JavaScript Payloads with Tree Shaking](https://developers.google.com/web/
 - [ ] **使用 code splitting 分包加载 js:** ![high] 通过分包加载，减少首次加载所需时间
     
     *怎么做：*
-    > * Vendor splitting 根绝库文件拆分模块，例如 React 或 lodash 单独打包成一个文件
-    > * Entry point splitting 根据入口拆分模块，例如根绝多页应用入口或者单页应用路由进行拆分
-    > * Dynamic splitting 根绝动态加载拆分模块，使用动态加载语法 ```import()``` ，实现模块按需加载
+    > * **Vendor splitting** 根据库文件拆分模块，例如 React 或 lodash 单独打包成一个文件
+    > * **Entry point splitting** 根据入口拆分模块，例如通过多页应用入口或者单页应用路由进行拆分
+    > * **Dynamic splitting** 根据动态加载拆分模块，使用动态加载语法 ```import()``` ，实现模块按需加载
 
     * 📖 [Reduce JavaScript Payloads with Tree Shaking](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/code-splitting/)   
 
@@ -556,7 +556,9 @@ Reduce JavaScript Payloads with Tree Shaking](https://developers.google.com/web/
 
  * 📖 [Check GZIP compression](https://checkgzipcompression.com/)
 
- - [ ] **分域存放资源：** ![high] 由于浏览器同一域名并行下载数有限，利用多域名主机存放静态资源，增加并行下载数，缩短资源加载时间
+ - [ ] **分域存放资源：** ![medium] 由于浏览器同一域名并行下载数有限，利用多域名主机存放静态资源，增加并行下载数，缩短资源加载时间
+
+ - [ ] **减少页面重定向** ![high] 
 
 **[⬆ 返回顶部](#table-of-contents)**
 
