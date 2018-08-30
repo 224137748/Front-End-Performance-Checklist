@@ -148,6 +148,11 @@
 
 - [ ] **最小化iframe的数量：** ![high] 仅在没有任何其他技术可行性时才使用iframe。尽量避免使用iframe。
 
+- [ ] **DNS预取：** ![high] 一次 DNS 查询时间大概在60-120ms之间或者更长，提前解析网页中可能的网络连接域名
+    ```html
+     <link rel="dns-prefetch" href="http://example.com/">
+    ```
+
 **[⬆ 返回顶部](#table-of-contents)**
 
 ## CSS
@@ -471,6 +476,21 @@
     * 📖 [How to Record Heap Snapshots  |  Tools for Web Developers  |  Google Developers](https://developers.google.com/web/tools/chrome-devtools/memory-problems/heap-snapshots)
     * 📖 [Chapter 22 - Profiling the Frontend - Blackfire](https://blackfire.io/docs/book/22-frontend-profiling)
 
+
+ - [ ] **使用 tree shaking 技术减少 js 大小:** ![high] 通过构建工具分析 JavaScript 代码并移除生产环境中用不到的 js 模块或方法
+
+    * 📖 [
+Reduce JavaScript Payloads with Tree Shaking](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/tree-shaking/)
+
+- [ ] **使用 code splitting 分包加载 js:** ![high] 通过分包加载，减少首次加载所需时间
+    
+    *怎么做：*
+    > * Vendor splitting 根绝库文件拆分模块，例如 React 或 lodash 单独打包成一个文件
+    > * Entry point splitting 根据入口拆分模块，例如根绝多页应用入口或者单页应用路由进行拆分
+    > * Dynamic splitting 根绝动态加载拆分模块，使用动态加载语法 ```import()``` ，实现模块按需加载
+
+    * 📖 [Reduce JavaScript Payloads with Tree Shaking](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/code-splitting/)   
+
 **[⬆ 返回顶部](#table-of-contents)**
 
 ## Server
@@ -535,6 +555,8 @@
 - [ ] **启用GZIP压缩** ![high]
 
  * 📖 [Check GZIP compression](https://checkgzipcompression.com/)
+
+ - [ ] **分域存放资源：** ![high] 由于浏览器同一域名并行下载数有限，利用多域名主机存放静态资源，增加并行下载数，缩短资源加载时间
 
 **[⬆ 返回顶部](#table-of-contents)**
 
