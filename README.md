@@ -68,6 +68,15 @@
  * 📖 [Make the Web Faster | Google Developers](https://developers.google.com/speed/)
  * 🛠 [Sitespeed.io - Welcome to the wonderful world of Web Performance](https://www.sitespeed.io/)
  * 🛠 [Calibre](https://calibreapp.com/)
+ * 🛠 [Website Speed Test | Check Web Performance &raquo; Dotcom-Tools](https://www.dotcom-tools.com/website-speed-test.aspx)
+ * 🛠 [Website and Server Uptime Monitoring - Pingdom](https://www.pingdom.com/product/uptime-monitoring/) ([Free Signup Link](https://www.pingdom.com/free))
+ * 🛠 [Uptime Robot](https://uptimerobot.com)
+ * 🛠 [SpeedCurve: Monitor front-end performance](https://speedcurve.com)
+ * 🛠 [PWMetrics - CLI tool and lib to gather performance metrics](https://github.com/paulirish/pwmetrics)
+ * 🛠 [Varvy - Page speed optimization]( https://varvy.com/pagespeed/)
+ * 🛠 [Lighthouse - Google]( https://developers.google.com/web/tools/lighthouse/#devtools)
+ * 🛠 [Checkbot browser extension - Checks for web performance best practices](https://www.checkbot.io/)
+ * 🛠 [Yellow Lab Tools | Online test to help speeding up heavy web pages](https://yellowlab.tools/)
 
 ### 参考
 
@@ -75,6 +84,11 @@
  * 📖 [Get Started With Analyzing Runtime Performance  |  Google Developers](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/)
  * 📖 [State of the Web | 2018_01_01](https://httparchive.org/reports/state-of-the-web?start=2018_01_01)
  * 📖 [Page Weight Doesn't Matter](https://www.speedshop.co/2015/11/05/page-weight-doesnt-matter.html)
+ * 📖 [Front-End Performance Checklist 2018 [PDF, Apple Pages]](https://www.smashingmagazine.com/2018/01/front-end-performance-checklist-2018-pdf-pages/)
+ * 📖 [Designing for Performance Weighing Aesthetics and Speed - By Lara Callender Hogan [eBook, Print]](http://designingforperformance.com/index.html)
+ * 📖 [Varvy - Web performance glossary](https://varvy.com/performance/)
+ * 📖 [fabkrum/web-performance-resources: Up to date collection of valuable web performance resources](https://github.com/fabkrum/web-performance-resources)
+ * 📖 [Checkbot - Web Speed Best Practices](https://www.checkbot.io/guide/speed/)
 ---
 
 ## HTML
@@ -164,17 +178,18 @@
 
     * 🛠 [cssnano: 基于PostCSS生态系统的模块化压缩工具。](https://cssnano.co/)
     * 🛠 [@neutrinojs/style-minify - npm](https://www.npmjs.com/package/@neutrinojs/style-minify)
+    * 🛠 [Online CSS Compressor](http://refresh-sf.com)
 
 - [ ] **Concatenation:** ![medium] CCSS文件合并（对于HTTP/2效果不是很大）。
 
     ```html
 
     <!-- 不推荐 -->
-    <script src="foo.css"></script>
-    <script src="ajax.css"></script>
+    <link rel="stylesheet" src="foo.css"/>
+    <link rel="stylesheet" src="ajax.css"/>
 
     <!-- 推荐 -->
-    <script src="combined.css"></script>
+    <link rel="stylesheet" src="combined.css"/>
     ```
 
     *为什么：*
@@ -237,7 +252,8 @@
     * 📖 [理解关键CSS](https://www.smashingmagazine.com/2015/08/understanding-critical-css/)
     * 🛠 [Critical by Addy Osmani on GitHub](https://github.com/addyosmani/critical) automates this.
     * 📖 [Inlining critical CSS for better web performance | Go Make Things](https://gomakethings.com/inlining-critical-css-for-better-web-performance/)
-     * 📖 [Critical Path CSS Generator - Prioritize above the fold content :: SiteLocity](https://www.sitelocity.com/critical-path-css-generator)
+    * 📖 [Critical Path CSS Generator - Prioritize above the fold content :: SiteLocity](https://www.sitelocity.com/critical-path-css-generator)
+    * 📖 [Reduce the size of the above-the-fold content](https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent)
 
 - [ ] **嵌入或内联CSS：** ![high] 避免在<body>中使用嵌入或内联CSS*（对HTTP/2无效）*
 
@@ -279,6 +295,7 @@
 
     * 📖 [WOFF 2.0 – 了解有关下一代Web字体格式的更多信息，并将TTF转换为WOFF2](https://gist.github.com/sergejmueller/cf6b4f2133bcb3e2f64a)
     * 🛠 [创建你自己的@ font-face Kits » Font Squirrel](https://www.fontsquirrel.com/tools/webfont-generator)
+    * 🛠 [IcoMoon App - Icon Font, SVG, PDF & PNG Generator](https://icomoon.io/app/)
     * 📖 [Using @font-face | CSS-Tricks](https://css-tricks.com/snippets/css/using-font-face/?ref=frontendchecklist)
     * 📖 [Can I use... WOFF2](https://caniuse.com/#feat=woff2)
 
@@ -289,7 +306,7 @@
     ```
 
     *为什么：*
-    > 当你浏览网站时，设备需要获取网站所在的位置以及需要连接的服务器。浏览器必须连接DNS服务器并等待查找完成后再获取资源（字体，CSS文件...），`prefetche`和`preconnect`允许浏览器在空闲时进行上面的操作，在真实请求时就不需要再花时间去做一系列动作。
+    > 当你浏览网站时，设备需要获取网站所在的位置以及需要连接的服务器。浏览器必须连接DNS服务器并等待查找完成后再获取资源（字体，CSS文件...），`prefetche`和`preconnect`允许浏览器在空闲时进行上面的操作，在真实请求时就不需要再花时间去做一系列动作。这带来了性能的提升，因为当浏览器使用字体信息解析css文件并切从服务器请求字体文件时，它已经预先解析了DNS信息并且在其连接池中准备好与服务器的开放连接。
 
     *怎么做：*
     > 在预取您的网络字体之前，请使用网页测试来检测网站.
@@ -300,6 +317,7 @@
     * 📖 [Make Your Site Faster with Preconnect Hints | Viget](https://www.viget.com/articles/make-your-site-faster-with-preconnect-hints/)
     * 📖 [Ultimate Guide to Browser Hints: Preload, Prefetch, and Preconnect - MachMetrics Speed Blog](https://www.machmetrics.com/speed-blog/guide-to-browser-hints-preload-preconnect-prefetch/)
     * 📖 [A Comprehensive Guide to Font Loading Strategies—zachleat.com](https://www.zachleat.com/web/comprehensive-webfonts/#font-face)
+    * 🛠 [typekit/webfontloader: Web Font Loader gives you added control when using linked fonts via @font-face.](https://github.com/typekit/webfontloader)
 
 - [ ] **Webfont大小：** ![medium] Webfont尺寸不超过300kb（包括所有变体）
 
@@ -325,7 +343,12 @@
     > 使用编译工具并指定85以下的级别压缩。
 
     * 📖 [Image Optimization | Web Fundamentals | Google Developers](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization)
+    * 📖 [Essential Image Optimization - An eBook by Addy Osmani](https://images.guide/)
     * 🛠 [TinyJPG – Compress JPEG images intelligently](https://tinyjpg.com/)
+    * 🛠 [Kraken.io - Online Image Optimizer](https://kraken.io/web-interface)
+    * 🛠 [Compressor.io - optimize and compress JPEG photos and PNG images](https://compressor.io/compress)
+    * 🛠 [Cloudinary - Image Analysis Tool](https://webspeedtest.cloudinary.com)
+    * 🛠 [SVGOMG - Optimize SVG vector graphics files](https://jakearchibald.github.io/svgomg/)
 
 
 * [ ] **图像格式：** ![high] 适当选择图像格式。
@@ -398,6 +421,7 @@
     > 建议使用下面的工具在构建或部署之前自动缩小文件。
 
     * 📖 [uglify-js - npm](https://www.npmjs.com/package/uglify-js)
+    * 🛠 [Online JavaScript Compressor](http://refresh-sf.com)
     * 📖 [Short read: How is HTTP/2 different? Should we still minify and concatenate?](https://scaleyourcode.com/blog/article/28)
 
 * [ ] **不内嵌JavaScript:** ![medium] *(仅对网站有效)* 避免在`body`中间嵌入多个JavaScript代码，将JavaScript代码重新集中到外部文件中，放在<head>或页面末尾（</body>之前）。
@@ -428,6 +452,7 @@
     > 如果有小脚本，可以在异步脚本上方使用内联脚本。
 
     * 📖 [Remove Render-Blocking JavaScript](https://developers.google.com/speed/docs/insights/BlockingJS)
+    * 📖 [Defer loading JavaScript](https://varvy.com/pagespeed/defer-loading-javascript.html)
 
 * [ ] **优化和更新的JS库：** ![medium] 项目中使用的所有JavaScript库都是有用到的 (推荐Vanilla Javascript的简单功能)并更新到最新版本
 
@@ -461,10 +486,19 @@
     *怎么做：*
     > 使用Chrome开发者工具中的时间轴工具来评估脚本事件，并找到可能需要花费太多时间的事件。
 
-     * 📖 [Speed Up JavaScript Execution  |  Tools for Web Developers  |  Google Developers](https://developers.google.com/web/tools/chrome-devtools/rendering-tools/js-execution)
+    * 📖 [Speed Up JavaScript Execution  |  Tools for Web Developers  |  Google Developers](https://developers.google.com/web/tools/chrome-devtools/rendering-tools/js-execution)
     * 📖 [JavaScript Profiling With The Chrome Developer Tools — Smashing Magazine](https://www.smashingmagazine.com/2012/06/javascript-profiling-chrome-developer-tools/)
     * 📖 [How to Record Heap Snapshots  |  Tools for Web Developers  |  Google Developers](https://developers.google.com/web/tools/chrome-devtools/memory-problems/heap-snapshots)
     * 📖 [Chapter 22 - Profiling the Frontend - Blackfire](https://blackfire.io/docs/book/22-frontend-profiling)
+    * 📖 [30 Tips To Improve Javascript Performance](http://www.monitis.com/blog/30-tips-to-improve-javascript-performance/)
+
+
+- [ ] **Use of Service Workers:** ![medium] You are using Service Workers in your PWA to cache datas or execute possible heavy tasks without impacting the user experience of your application. 
+    
+    * 📖 [Service Workers: an Introduction  |  Web Fundamentals  |  Google Developers](https://developers.google.com/web/fundamentals/primers/service-workers/)
+    * 📖 [Measuring the Real-world Performance Impact of Service Workers  |  Web  |  Google Developers](https://developers.google.com/web/showcase/2016/service-worker-perf)
+    * 📖 [What Are Service Workers and How They Help Improve Performance](https://www.keycdn.com/blog/service-workers/)
+    * 📖 [How does a service worker work? - YouTube](https://www.youtube.com/watch?v=__xAtWgfzvc)
 
 **[⬆ 返回顶部](#table-of-contents)**
 
@@ -472,7 +506,18 @@
 
 ![server-side]
 
-- [ ] **页面大小 < 1500 KB:** ![high] (理想情况 < 500 KB) 尽可能减少页面和资源的大小。
+- [ ] **网站使用HTTPS:** ![high] 
+
+    *Why:*
+    > HTTPS不仅适用于电子商务网站，也适用于所有存在数据传递的网站。如今的现代浏览器对于不安全的网站在许多功能上做了些限制。 例如：如果网站未使用HTTPS，则地理定位，推送通知和服务工作程序等功能会不起作用。今天设置和使用SSL证书比以前容易得多([Let's Encrypt](https://letsencrypt.org/)能提供免费的https服务).
+
+    * 📖 [Why Use HTTPS? | Cloudflare](https://www.cloudflare.com/learning/security/why-use-https/)
+    * 📖 [Enabling HTTPS Without Sacrificing Your Web Performance - Moz](https://moz.com/blog/enabling-https-without-sacrificing-web-performance)
+    * 📖 [How HTTPS Affects Website Performance](https://wp-rocket.me/blog/https-affects-website-performance/)
+    * 📖 [HTTP versus HTTPS versus HTTP2 - The real story | Tune The Web](https://www.tunetheweb.com/blog/http-versus-https-versus-http2/)
+    * 📖 [HTTP vs HTTPS — Test them both yourself](https://www.httpvshttps.com/)
+
+- [ ] **页面大小 < 1500 KB(理想 < 500 KB):** ![high] (理想情况 < 500 KB) 尽可能减少页面和资源的大小。
 
     *为什么：*
     > 理想情况下，应该尝试让页面大小<500 KB，但Web页面大小中位数大约为1500 KB（即使在移动设备上）。根据你的目标用户、连接速度、设备，尽可能减少页面大小以尽可能获得最佳用户体验非常重要。
@@ -499,6 +544,8 @@
 
     * 📖 [什么是DevTools中的TTFB，以及如何处理它](https://scaleyourcode.com/blog/article/27)
     * 📖 [Monitoring your servers with free tools is easy](https://scaleyourcode.com/blog/article/7)
+    * 📖 [Time to First Byte (TTFB)](https://varvy.com/pagespeed/ttfb.html)
+    * 🛠 [Global latency testing tool](https://latency.apex.sh)
 
 * [ ] **Cookie 大小:** ![medium] 如果您使用cookie，请确保每个cookie不超过4096字节，并且一个的域名下不超过20个cookie。
 
@@ -516,6 +563,9 @@
 
 - [ ] **最小化HTTP请求：** ![high] 始终确保所请求的每个文件对网站或应用程序至关重要，尽可能减少http请求。
 
+ * 📖 [Combine external CSS](https://varvy.com/pagespeed/combine-external-css.html)
+ * 📖 [Combine external JavaScript](https://varvy.com/pagespeed/combine-external-javascript.html)
+
 - [ ] **使用CDN提供静态文件：** ![medium] 使用CDN可以更快地在全球范围内获取到你的静态文件。
 
  * 📖 [10 Tips to Optimize CDN Performance - CDN Planet](https://www.cdnplanet.com/blog/10-tips-optimize-cdn-performance/)
@@ -527,16 +577,19 @@
 
 - [ ] **正确设置HTTP缓存标头：** ![high] 合理设置HTTP缓存标头来减少http请求次数。
 
-- [ ] **启用GZIP压缩** ![high]
+- [ ] **启用GZIP压缩** ![high]使用压缩方法（如Gzip或Brotli）来减小JavaScript文件的大小。使用较小尺寸的文件，用户可以更快地下载资源，从而提高性能。
 
  * 📖 [Check GZIP compression](https://checkgzipcompression.com/)
+ * 🛠 [Check Brotli Compression](https://tools.keycdn.com/brotli-test)
+ * 📖 [Can I use... Brotli](https://caniuse.com/#feat=brotli)
 
 **[⬆ 返回顶部](#table-of-contents)**
 
 ---
 ## 性能与前端框架
 
-### Vue
+### Angular
+ * 📖 [Angular Performance Checklist](https://github.com/mgechev/angular-performance-checklist)
 
 ### React
 
@@ -544,11 +597,34 @@
  * 📖 [React image manipulation | Cloudinary](https://cloudinary.com/documentation/react_image_manipulation)
  * 📖 [Debugging React performance with React 16 and Chrome Devtools.](https://building.calibreapp.com/debugging-react-performance-with-react-16-and-chrome-devtools-c90698a522ad)
 
+### Vue
+
+### WordPress
+
+* 🛠 [Test Your Website Speed | WordPress Hosting by @WPEngine](https://wpengine.com/speed-tool/)
+
+#### 文章
+
+ * 📖 [19 Tips to Speed Up WordPress Performance (Updated)](https://www.wpbeginner.com/wordpress-performance-speed/)
+ * 📖 [Speed Up Your WordPress - How to Save Images Optimized for Web](https://www.wpbeginner.com/beginners-guide/speed-wordpress-save-images-optimized-web/)
+
+#### 插件推荐
+
+* 🛠 [Caching Plugin for WordPress - Speed up your website with WP Rocket](https://wp-rocket.me/)
+* 🛠 [WP-Sweep | WordPress.org](https://wordpress.org/plugins/wp-sweep/)
+* 🛠 [Imagify Image Optimizer | WordPress.org](https://wordpress.org/plugins/imagify/)
+
 ---
 
 ## Translations
 
 The Front-End Performance Checklist wants to also be available in other languages! Don't hesitate to submit your contribution!
+
+* 🇵🇹 Portuguese: [fernandofawkes/Front-End-Performance-Checklist](https://github.com/fernandofawkes/Front-End-Performance-Checklist)
+* 🇨🇳 Chinese: [JohnsenZhou/Front-End-Performance-Checklist](https://github.com/JohnsenZhou/Front-End-Performance-Checklist)
+* 🇷🇺 Russian: [lex111/Front-End-Performance-Checklist](https://github.com/lex111/Front-End-Performance-Checklist)
+* 🇫🇷 French: [WilliamDASILVA/Front-End-Performance-Checklist](https://github.com/WilliamDASILVA/Front-End-Performance-Checklist)
+* 🇰🇷 Korean: [ParkSB/Front-End-Performance-Checklist](https://github.com/ParkSB/Front-End-Performance-Checklist)
 
 ## Contributing
 
@@ -568,6 +644,31 @@ The Front-End Performance Checklist wants to also be available in other language
 ## Contributors
 
 感谢各位参与本项目的人员所作出的贡献。 [[Contribute]](.github/CONTRIBUTING.md).
+<a href="https://github.com/thedaviddias/Front-End-Performance-Checklist/graphs/contributors">
+    <img src="https://opencollective.com/front-end-checklist/contributors.svg?width=890" />
+</a>
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/front-end-checklist#backer)]
+
+<a href="https://opencollective.com/front-end-checklist#backers" target="_blank"><img src="https://opencollective.com/front-end-checklist/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/front-end-checklist#sponsor)]
+
+<a href="https://opencollective.com/front-end-checklist/sponsor/0/website" target="_blank"><img src="https://opencollective.com/front-end-checklist/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/front-end-checklist/sponsor/1/website" target="_blank"><img src="https://opencollective.com/front-end-checklist/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/front-end-checklist/sponsor/2/website" target="_blank"><img src="https://opencollective.com/front-end-checklist/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/front-end-checklist/sponsor/3/website" target="_blank"><img src="https://opencollective.com/front-end-checklist/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/front-end-checklist/sponsor/4/website" target="_blank"><img src="https://opencollective.com/front-end-checklist/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/front-end-checklist/sponsor/5/website" target="_blank"><img src="https://opencollective.com/front-end-checklist/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/front-end-checklist/sponsor/6/website" target="_blank"><img src="https://opencollective.com/front-end-checklist/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/front-end-checklist/sponsor/7/website" target="_blank"><img src="https://opencollective.com/front-end-checklist/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/front-end-checklist/sponsor/8/website" target="_blank"><img src="https://opencollective.com/front-end-checklist/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/front-end-checklist/sponsor/9/website" target="_blank"><img src="https://opencollective.com/front-end-checklist/sponsor/9/avatar.svg"></a>
 
 ## License
 
