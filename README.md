@@ -98,10 +98,10 @@
 - [ ] **压缩 HTML:** ![medium] HTML代码压缩，将注释、空格和新行从生产文件中删除。
 
     *为什么：*
-    > 删除所有不必要的空格、注释和中断行将减少HTML的大小，加快网站的页面加载时间，并显着减轻用户的下载时间。
+    > 删除所有不必要的空格、注释和中断行将减少HTML的大小，加快网站的页面加载时间，并显著减少用户的下载时间。
 
     *怎么做：*
-    > 大多数框架都有插件来促进网页的缩小。你可以使用一组可以自动完成工作的NPM模块。
+    > 大多数框架都有插件用来压缩网页的体积。你可以使用一组可以自动完成工作的NPM模块。
 
     * 🛠 [HTML minifier | Minify Code](http://minifycode.com/html-minifier/)
     * 📖 [Experimenting with HTML minifier — Perfection Kills](http://perfectionkills.com/experimenting-with-html-minifier/#use_short_doctype)
@@ -153,14 +153,19 @@
     ```
 
     *为什么：*
-    > 在引用JavaScript之前引用CSS可以实现更好的并行下载，从而加快浏览器的渲染速度。
+    > 在引用JavaScript之前引用CSS可以实现更好地并行下载，从而加快浏览器的渲染速度。
 
     *怎么做：*
     > 确保<head>中的<link>和<style>始终位于<script>之前。
 
     * 📖 [合理安排styles和scripts来提高网页速度](https://varvy.com/pagespeed/style-script-order.html)
 
-- [ ] **最小化iframe的数量：** ![high] 仅在没有任何其他技术可能性时才使用iframe。尽量避免使用iframe。
+- [ ] **最小化iframe的数量：** ![high] 仅在没有任何其他技术可行性时才使用iframe。尽量避免使用iframe。
+
+- [ ] **DNS预取：** ![high] 一次 DNS 查询时间大概在60-120ms之间或者更长，提前解析网页中可能的网络连接域名
+    ```html
+     <link rel="dns-prefetch" href="http://example.com/">
+    ```
 
 **[⬆ 返回顶部](#table-of-contents)**
 
@@ -171,7 +176,7 @@
 - [ ] **压缩:** ![high] 所有CSS文件都需要被压缩，从生产文件中删除注释，空格和空行。
 
     *为什么：*
-    > 缩小CSS文件时，内容加载速度更快，并且将更少的数据发送到客户端，所以在生产中缩小CSS文件是非常重要，这对用户是有益的就像任何企业想要降低带宽成本和降低资源。
+    > 缩小CSS文件后，内容加载速度更快，并且将更少的数据发送到客户端，所以在生产中缩小CSS文件是非常重要，这对用户是有益的，就像任何企业想要降低带宽成本和降低资源。
 
     *怎么做：*
     > 使用工具在构建或部署之前自动压缩文件。
@@ -180,7 +185,7 @@
     * 🛠 [@neutrinojs/style-minify - npm](https://www.npmjs.com/package/@neutrinojs/style-minify)
     * 🛠 [Online CSS Compressor](http://refresh-sf.com)
 
-- [ ] **Concatenation:** ![medium] CCSS文件合并（对于HTTP/2效果不是很大）。
+- [ ] **Concatenation:** ![medium] CSS文件合并（对于HTTP/2效果不是很大）。
 
     ```html
 
@@ -193,15 +198,16 @@
     ```
 
     *为什么：*
-    > 如果你还在使用HTTP/1就可能需要合并文件，如果服务器使用是HTTP/2效果还有待检测。
+    > 如果你还在使用HTTP/1，那么你就需要合并你的文件。不过在使用HTTP/2的情况下不用这样（效果待测试）。
 
     *怎么做：*
-    > 在构建或部署之前使用在线工具或者其他插件来合并文件。当然要在确保合并文件不会破坏项目正常运行。
+    > 在构建或部署之前使用在线工具或者其他插件来合并文件。
+    > 当然，要确保合并文件后项目可以正常运行。
 
     * 📖 [HTTP: 优化应用程序交付 - 高性能浏览器网络 (O'Reilly)](https://hpbn.co/optimizing-application-delivery/#optimizing-for-http2)
     * 📖 [HTTP/2时代的性能最佳实践](https://deliciousbrains.com/performance-best-practices-http2/)
 
-- [ ] **非阻塞：** ![high] CSS文件需要是非阻塞引入，以防止DOM花时间加载。
+- [ ] **非阻塞：** ![high] CSS文件需要非阻塞引入，以防止DOM花费更多时间才能渲染完成。
 
     ```html
     <link rel="preload" href="global.min.css" as="style" onload="this.rel='stylesheet'">
@@ -212,7 +218,7 @@
     > CSS文件可以阻止页面加载并延迟页面呈现。使用`preload`实际上可以在浏览器开始显示页面内容之前加载CSS文件。
 
     *怎么做：*
-    > 需要添加`rel`属性并赋值`preload`，并在`<link>`元素上添加`as =“style”`。
+    > 需要添加`rel`属性并赋值`preload`，并在`<link>`元素上添加`as=“style”`。
 
     * 📖 [loadCSS by filament group](https://github.com/filamentgroup/loadCSS)
     * 📖 [使用loadCSS预加载CSS的示例](https://gist.github.com/thedaviddias/c24763b82b9991e53928e66a0bafc9bf)
@@ -221,27 +227,28 @@
 
 - [ ] **CSS类(class)的长度:** ![low] class的长度会对HTML和CSS文件产生（轻微）影响。
 
-    *为即使是性能影响也是有争议的，对项目的命名策略做出决定会对样式表的可维护性产生重大影响。如果使用BEM，在某些情况下可能会遇到比所需字符多的类。明智地选择名字和命名空间总是很重要的。
+    *为什么：*
+    > 甚至性能影响也是有争议的，项目的命名策略会对样式表的可维护性有重大影响。如果使用BEM，在某些情况下可能会写出比所需要的类名更长的字符。重要的是要明智的选择名字和命名空间。
 
     *怎么做：*
-    > 组件化有助于减少类的数量（和声明）以及类的长度。
+    > 可能有些人更关注类名的长度，但是网站按组件进行划分的话可以帮助减少类名的数量和长度。
 
     * 🛠 [long vs short class · jsPerf](https://jsperf.com/long-vs-short-class)
 
 - [ ] **不用的CSS:** ![medium] 删除未使用的CSS选择器。
 
     *为什么：*
-    > 删除未使用的CSS选择器可以减小文件的大小，加快资源的加载速度。
+    > 删除未使用的CSS选择器可以减小文件的大小，提高资源的加载速度。
 
     *怎么做：*
-    > ⚠️ 检查要使用的CSS框架是否已包含重置/规范化代码。有时可能不需要用到重置/规范化文件中的内容。
+    > ⚠️ 检查要使用的CSS框架是否已包含reset/normalize代码，可能不需要用到reset/normalize文件中的内容。
 
     * 🛠 [UnCSS Online](https://uncss-online.com/)
     * 🛠 [PurifyCSS](https://github.com/purifycss/purifycss)
     * 🛠 [PurgeCSS](https://github.com/FullHuman/purgecss)
     * 🛠 [Chrome DevTools Coverage](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage)
 
-* [ ] **关键CSS（Critical）:** ![high] 关键CSS (或者在页面上方"or above the fold") 包含页面中可见部分的CSS。在其他CSS引用之前引用，在<style> </style>之间嵌入一行（尽可能压缩后引用）。
+* [ ] **关键CSS（Critical）:** ![high] 将页面渲染时必备的CSS通过```<style></style>```的方式内联到页面中（尽可能压缩后引用）。
 
     *为什么：*
     > 内联关键CSS有助于加速网页的呈现，减少对服务器的请求数量。
@@ -258,14 +265,14 @@
 - [ ] **嵌入或内联CSS：** ![high] 避免在<body>中使用嵌入或内联CSS*（对HTTP/2无效）*
 
     *为什么：*
-    > 因为将内容与设计分开是一种很好的做法。它还可以提高代码的可维护性并使站点可访问性更强。对于性能来说，它只是因为减少了HTML页面的文件大小和加载时间。
+    > 因为将内容与设计分开是一种很好的做法。它还可以提高代码的可维护性并使站点可访问性更强。对于性能来说，它只是减少了HTML页面的文件大小和加载时间。
 
     *怎么做：*
     > 始终使用外部样式表或在<head>中嵌入CSS（并遵循其他CSS性能规则）。
 
     * 📖 [Observe CSS Best Practices: Avoid CSS Inline Styles](https://www.lifewire.com/avoid-inline-styles-for-css-3466846)
 
-- [ ] **分析样式表的复杂性：** ![high] 分析样式表有助于标记问题、冗余和重复的CSS选择器。
+- [ ] **分析样式表的复杂性：** ![high] 分析样式表有助于发现有问题的、冗余和重复的CSS选择器。
 
     *为什么：*
     > 有时在CSS中会出现冗余或验证错误，分析CSS文件并删除这些复杂性的代码可以加速CSS文件的读取和加载（因为您的浏览器会更快地读取它们）
@@ -285,10 +292,10 @@
 
 * 📖 [A Book Apart, Webfont Handbook](https://abookapart.com/products/webfont-handbook)
 
-- [ ] **Webfont格式：** ![medium] 使用WOFF2格式字体。
+- [ ] **Webfont格式：** ![medium] 在你的网站或者应用使用WOFF2格式字体。
 
     *为什么：*
-    > 根据Google的说法，WOFF 2.0 Web字体压缩格式比WOFF 1.0高30％的平均增益。一个较好的做法是使用WOFF 2.0作为主要字体，WOFF 1.0和TTF格式字体作为备选。
+    > 根据Google的说法，WOFF 2.0 Web字体压缩格式平均比WOFF 1.0高30％的增益。一个较好的做法是使用WOFF 2.0作为主要字体，WOFF 1.0和TTF格式字体作为备选。
 
     *怎么做：*
     > 在购买新字体之前应先检查提供商是否提供了WOFF2格式。如果使用的是免费字体，则可以始终使用Font Squirrel生成所需格式的字体。
@@ -331,7 +338,7 @@
 
  * 📖 [Image Bytes in 2018](https://httparchive.org/reports/page-weight#bytesImg)
 
-* [ ] **图像优化:** ![high] 图像经过优化，保证压缩后的图片符合产品要求。
+* [ ] **图像优化:** ![high] 在保证压缩后的图片符合产品要求的情况下将图像进行优化。
 
     *为什么：*
     > 优化的图像在浏览器中加载速度更快，消耗的数据更少。
@@ -354,7 +361,7 @@
 * [ ] **图像格式：** ![high] 适当选择图像格式。
 
     *为什么：*
-    > 为确保图片不会减慢网站速度
+    > 确保图片不会减慢网站速度
         
     *怎么做：*
     > 使用[Lighthouse](https://developers.google.com/web/tools/lighthouse/)识别哪些图像可以使用下一代图片格式（如JPEG 2000m JPEG XR或WebP）。
@@ -365,7 +372,7 @@
      * 📖 [PNG8 - The Clear Winner — SitePoint](https://www.sitepoint.com/png8-the-clear-winner/)
      * 📖 [8-bit vs 16-bit - What Color Depth You Should Use And Why It Matters - DIY Photography](https://www.diyphotography.net/8-bit-vs-16-bit-color-depth-use-matters/)
 
-- [ ] **使用矢量图像 VS 栅格/位图：** ![medium] 推荐使用矢量图像而不是位图图像（when possible）。
+- [ ] **使用矢量图像 VS 栅格/位图：** ![medium] 可以的话，推荐使用矢量图像而不是位图图像。
 
     *为什么：*
     > 矢量图像（SVG）往往比图像小，具有响应性和完美缩放功能。而且这些图像可以通过CSS进行动画和修改操作。
@@ -382,7 +389,7 @@
     * 📖 [When to base64 encode images (and when not to) | David Calhoun](https://www.davidbcalhoun.com/2011/when-to-base64-encode-images-and-when-not-to/)
    * 📖 [Base64 encoding images for faster pages | Performance and seo factors](https://varvy.com/pagespeed/base64-images.html)
 
-* [ ] **懒加载：** ![medium] 图像懒加载（始终提供noscript作为后备‘A noscript fallback is always provided’）。
+* [ ] **懒加载：** ![medium] 图像懒加载（始终提供noscript作为后备方案）。
 
     *为什么：*
     > 它能改善当前页面的响应时间，避免加载一些用户可能不需要或不必要的图像。
@@ -401,7 +408,7 @@
     > 小型设备不需要比视口大的图像。建议在不同尺寸上使用一个图像的多个版本。
 
     *怎么做：*
-    > 为要不同的设备创建不同大小的图像。
+    > 为不同的设备设置不同大小的图像。
     > 使用srcset和picture为每个图像提供多种变体（variants）。
 
      * 📖 [Responsive images - Learn web development | MDN](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
@@ -412,7 +419,7 @@
 
 ![javascript]
 
-- [ ] **JS 压缩:** ![high] 所有JavaScript文件都要被缩小，注释、空格和空行将从生产文件中删除（在HTTP/2仍然有效果）。
+- [ ] **JS 压缩:** ![high] 所有JavaScript文件都要被压缩，生产环境中删除注释、空格和空行（在HTTP/2仍然有效果）。
 
     *为什么：*
     > 删除所有不必要的空格、注释和空行将减少JavaScript文件的大小，并加快网站的页面加载时间，提升用户体验。
@@ -427,10 +434,10 @@
 * [ ] **不内嵌JavaScript:** ![medium] *(仅对网站有效)* 避免在`body`中间嵌入多个JavaScript代码，将JavaScript代码重新集中到外部文件中，放在<head>或页面末尾（</body>之前）。
 
     *为什么：*
-    > 将JavaScript嵌入代码直接放在<body>中可能会降低页面速度，因为它在构建DOM时会加载。最好的选择是使用`async` 或 `defer`的外部文件来避免阻塞DOM渲染。另一种选择是在<head>中放置一些脚本。大多数时候需要在DOM进入主处理之前加载的分析代码或小脚本。
+    > 将JavaScript嵌入代码直接放在<body>中可能会降低页面速度，因为它在构建DOM时会加载。最好的选择是使用`async` 或 `defer`的外部文件来避免阻塞DOM渲染。另一种选择是在<head>中放置一些脚本。大多数时候是需要在DOM进入主处理之前加载的分析代码或小脚本。
 
     *怎么做：*
-    > 确保使用async或defer加载所有script文件，并准确的在<head>中加载代码。
+    > 确保使用async或defer加载所有script文件，并准确地在<head>中加载代码。
     
      * 📖 [优化JavaScript并提高网站加载速度的11个技巧](https://www.upwork.com/hiring/development/11-tips-to-optimize-javascript-and-improve-website-loading-speeds/)
 
@@ -454,7 +461,7 @@
     * 📖 [Remove Render-Blocking JavaScript](https://developers.google.com/speed/docs/insights/BlockingJS)
     * 📖 [Defer loading JavaScript](https://varvy.com/pagespeed/defer-loading-javascript.html)
 
-* [ ] **优化和更新的JS库：** ![medium] 项目中使用的所有JavaScript库都是有用到的 (推荐Vanilla Javascript的简单功能)并更新到最新版本
+* [ ] **优化和更新的JS库：** ![medium] 项目中使用的所有JavaScript库都是有用到的 (推荐使用原生JS的简单功能)并更新到最新版本
 
     *为什么：*
     > 大多数情况下，新版本都带有优化和安全性修复，所以应该使用最优化的代码来优化项目。确保不存在过时插件。
@@ -499,6 +506,21 @@
     * 📖 [Measuring the Real-world Performance Impact of Service Workers  |  Web  |  Google Developers](https://developers.google.com/web/showcase/2016/service-worker-perf)
     * 📖 [What Are Service Workers and How They Help Improve Performance](https://www.keycdn.com/blog/service-workers/)
     * 📖 [How does a service worker work? - YouTube](https://www.youtube.com/watch?v=__xAtWgfzvc)
+
+
+ - [ ] **使用 tree shaking 技术减少 js 大小:** ![high] 通过构建工具分析 JavaScript 代码并移除生产环境中用不到的 js 模块或方法
+
+    * 📖 [
+Reduce JavaScript Payloads with Tree Shaking](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/tree-shaking/)
+
+- [ ] **使用 code splitting 分包加载 js:** ![high] 通过分包加载，减少首次加载所需时间
+    
+    *怎么做：*
+    > * **Vendor splitting** 根据库文件拆分模块，例如 React 或 lodash 单独打包成一个文件
+    > * **Entry point splitting** 根据入口拆分模块，例如通过多页应用入口或者单页应用路由进行拆分
+    > * **Dynamic splitting** 根据动态加载拆分模块，使用动态加载语法 ```import()``` ，实现模块按需加载
+
+    * 📖 [Reduce JavaScript Payloads with Tree Shaking](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/code-splitting/)   
 
 **[⬆ 返回顶部](#table-of-contents)**
 
@@ -547,7 +569,7 @@
     * 📖 [Time to First Byte (TTFB)](https://varvy.com/pagespeed/ttfb.html)
     * 🛠 [Global latency testing tool](https://latency.apex.sh)
 
-* [ ] **Cookie 大小:** ![medium] 如果您使用cookie，请确保每个cookie不超过4096字节，并且一个的域名下不超过20个cookie。
+* [ ] **Cookie 大小:** ![medium] 如果您使用cookie，请确保每个cookie不超过4096字节，并且一个域名下不超过20个cookie。
 
     *为什么：*
     > cookie存在于HTTP头中，在Web服务器和浏览器之间交换。保持cookie的大小尽可能低是非常重要的，以尽量减少对用户响应时间的影响。
@@ -582,6 +604,10 @@
  * 📖 [Check GZIP compression](https://checkgzipcompression.com/)
  * 🛠 [Check Brotli Compression](https://tools.keycdn.com/brotli-test)
  * 📖 [Can I use... Brotli](https://caniuse.com/#feat=brotli)
+
+ - [ ] **分域存放资源：** ![medium] 由于浏览器同一域名并行下载数有限，利用多域名主机存放静态资源，增加并行下载数，缩短资源加载时间
+
+ - [ ] **减少页面重定向** ![high] 
 
 **[⬆ 返回顶部](#table-of-contents)**
 
@@ -689,3 +715,5 @@ All icons are provided by [Icons8](https://icons8.com/)
 [low]: https://front-end-checklist.now.sh/low.svg
 [medium]: https://front-end-checklist.now.sh/medium.svg
 [high]: https://front-end-checklist.now.sh/high.svg
+
+
