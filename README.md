@@ -14,8 +14,8 @@
   <a href="http://makeapullrequest.com">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome">
   </a>
-  <a href="https://gitter.im/Front-End-Checklist/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link">
-    <img src="https://img.shields.io/badge/chat-on_gitter-008080.svg?style=flat-square" alt="Gitter">
+  <a href="https://spectrum.chat/front-end-checklist">
+    <img src="https://img.shields.io/badge/chat-on_spectrum-4837E2.svg?style=flat-square" alt="Spectrum">
   </a>
     <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="Licence MIT">
@@ -63,6 +63,7 @@
  * 🛠 ☆ [Dareboost: Website Speed Test and Website Analysis](https://www.dareboost.com/) (use the coupon WPCDD20 for -20%)
  * 🛠 [GTmetrix | Website Speed and Performance Optimization](https://gtmetrix.com/)
  * 🛠 [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
+ * 🛠 [Web.dev](https://web.dev/measure)
  * 🛠 [Pingdom Website Speed Test](https://tools.pingdom.com)
  * 📖 [Pagespeed - The tool and optimization guide](https://varvy.com/pagespeed/)
  * 📖 [Make the Web Faster | Google Developers](https://developers.google.com/speed/)
@@ -77,10 +78,13 @@
  * 🛠 [Lighthouse - Google]( https://developers.google.com/web/tools/lighthouse/#devtools)
  * 🛠 [Checkbot browser extension - Checks for web performance best practices](https://www.checkbot.io/)
  * 🛠 [Yellow Lab Tools | Online test to help speeding up heavy web pages](https://yellowlab.tools/)
+ * 🛠 [Speedrank - Web Performance Monitoring](https://speedrank.app/)
+ * 🛠 [DebugBear - Monitor website performance and Lighthouse scores](https://www.debugbear.com/)
 
 ### 参考
 
  * 📖 [The Cost Of JavaScript - YouTube](https://www.youtube.com/watch?v=_bzqF05xsC4)
+ * 📖 [AddyOsmani.com - Start Performance Budgeting](https://addyosmani.com/blog/performance-budgets/)
  * 📖 [Get Started With Analyzing Runtime Performance  |  Google Developers](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/)
  * 📖 [State of the Web | 2018_01_01](https://httparchive.org/reports/state-of-the-web?start=2018_01_01)
  * 📖 [Page Weight Doesn't Matter](https://www.speedshop.co/2015/11/05/page-weight-doesnt-matter.html)
@@ -89,6 +93,8 @@
  * 📖 [Varvy - Web performance glossary](https://varvy.com/performance/)
  * 📖 [fabkrum/web-performance-resources: Up to date collection of valuable web performance resources](https://github.com/fabkrum/web-performance-resources)
  * 📖 [Checkbot - Web Speed Best Practices](https://www.checkbot.io/guide/speed/)
+ * 🛠 [Progressive Tooling - A list of community-built, third-party tools that can be used to improve page performance](https://progressivetooling.com/)
+
 ---
 
 ## HTML
@@ -283,6 +289,7 @@
     * 🛠 [TestMyCSS | 优化和检查CSS性能](http://www.testmycss.com/)
     * 📖 [CSS 统计数据（stats）](https://cssstats.com/)
     * 🛠 [macbre/analyze-css: CSS选择器复杂性和性能分析](https://github.com/macbre/analyze-css)
+    * 🛠 [Project Wallace](https://www.projectwallace.com/) is like CSS Stats but stores stats over time so you can track your changes
 
 **[⬆ 返回顶部](#table-of-contents)**
 
@@ -395,8 +402,9 @@
     > 它能改善当前页面的响应时间，避免加载一些用户可能不需要或不必要的图像。
 
     *怎么做：*
-    > 使用[Lighthouse](https://developers.google.com/web/tools/lighthouse/)可以识别屏幕外的图像数量。
-    > 使用懒加载图像的JavaScript插件。
+    > 使用[Lighthouse](https://developers.google.com/web/tools/lighthouse/)可以识别当前屏幕外的图像数量。
+    > 要确保图片懒加载时鼠标悬停或其他用户操作时显示的替代图像。
+    > 可以使用以下图像懒加载的JavaScript插件。
 
     * 🛠 [verlok/lazyload: Github](https://github.com/verlok/lazyload)
     * 📖 [Lazy Loading Images and Video  |  Web Fundamentals  |  Google Developers](https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/)
@@ -651,6 +659,8 @@ The Front-End Performance Checklist wants to also be available in other language
 * 🇷🇺 Russian: [lex111/Front-End-Performance-Checklist](https://github.com/lex111/Front-End-Performance-Checklist)
 * 🇫🇷 French: [WilliamDASILVA/Front-End-Performance-Checklist](https://github.com/WilliamDASILVA/Front-End-Performance-Checklist)
 * 🇰🇷 Korean: [ParkSB/Front-End-Performance-Checklist](https://github.com/ParkSB/Front-End-Performance-Checklist)
+* 🇪🇸 Spanish: [dagerzuga/Front-End-Performance-Checklist](https://github.com/dagerzuga/Front-End-Performance-Checklist)
+* 🇻🇮 Vietnamese : [huynhan147/Front-End-Performance-Checklist](https://github.com/huynhan147/FrontEnd-Performance-Checklist)
 
 ## Contributing
 
